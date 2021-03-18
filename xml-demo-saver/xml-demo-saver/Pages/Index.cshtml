@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">XML Saver</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="flex mb-3">
+            <a href="/Add" class="btn btn-primary">Add</a>
+        </div>
+    </div>
+    <div class="row table-responsive">
+        <table class="table table-striped" width="100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                    <th>Phone Numbers</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.SurName</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>
+                            <a href="/Edit/@user.Id" class="btn btn-primary">Edit</a>
+                            <a asp-page-handler="delete" asp-route-id="@user.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
